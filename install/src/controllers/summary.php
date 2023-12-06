@@ -14,7 +14,7 @@ if (!function_exists('f_owc')) {
             fclose($hnd);
 
             if (!is_null($mode)) {
-                chmod($path, $mode);
+                @chmod($path, $mode);
             }
         } catch (Exception $e) {
             // Nothing, this is NOT normal

@@ -165,7 +165,6 @@ if (!function_exists('get_installmode')) {
                 }
             }
         }
-
         return $installmode;
     }
 }
@@ -182,7 +181,7 @@ if (!function_exists('getLangs')) {
         ) {
             $manager_language = $install_language;
         } else {
-            $manager_language = 'english';
+            $manager_language = 'en';
         }
         $langs = [];
         if ($handle = opendir('../core/lang')) {
@@ -194,14 +193,12 @@ if (!function_exists('getLangs')) {
             closedir($handle);
         }
         sort($langs);
-
         $_ = [];
         foreach ($langs as $language) {
             $abrv_language = explode('.', $language);
             $selected = (strtolower($abrv_language[0]) == strtolower($manager_language)) ? ' selected' : '';
             $_[] = '<option value="' . $abrv_language[0] . '" ' . $selected . '>' . strtoupper($abrv_language[0]) . '</option>';
         }
-
         return implode("\n", $_);
     }
 }
@@ -220,7 +217,6 @@ if (!function_exists('sortItem')) {
             }
         }
         $rs['unrecommend'] = '';
-
         return $rs + $array;
     }
 }
@@ -249,7 +245,6 @@ if (!function_exists('getTemplates')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%templates%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -279,7 +274,6 @@ if (!function_exists('getTVs')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%tvs%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -310,7 +304,6 @@ if (!function_exists('getChunks')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%chunks%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -341,7 +334,6 @@ if (!function_exists('getModules')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%modules%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -376,7 +368,6 @@ if (!function_exists('getPlugins')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%plugins%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -407,7 +398,6 @@ if (!function_exists('getSnippets')) {
             $_[] = parse($tpl, $ph);
             $i++;
         }
-
         return (0 < count($_)) ? '<h3>[%snippets%]</h3>' . implode("\n", $_) : '';
     }
 }
@@ -476,7 +466,6 @@ if (!function_exists('parse_docblock')) {
                 @fclose($tpl);
             }
         }
-
         return $params;
     }
 }
@@ -510,7 +499,6 @@ if (!function_exists('propertiesNameValue')) {
                 }
             }
         }
-
         return $parameter;
     }
 }
@@ -619,7 +607,6 @@ if (!function_exists('isJson')) {
     function isJson($string, $returnData = false)
     {
         $data = json_decode($string, true);
-
         return (json_last_error() == JSON_ERROR_NONE) ? ($returnData ? $data : true) : false;
     }
 }
@@ -654,7 +641,6 @@ if (!function_exists('removeDocblock')) {
      */
     function removeDocblock($code, $type)
     {
-
         $cleaned = preg_replace("/^.*?\/\*\*.*?\*\/\s+/s", '', $code, 1);
 
         // Procedure taken from plugin.filesource.php
