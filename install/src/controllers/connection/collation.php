@@ -1,26 +1,22 @@
 <?php
-
-$host = $_POST['host'];
-$uid = $_POST['uid'];
-$pwd = $_POST['pwd'];
-
+$method = strip_tags($_POST['method']);
+$host = strip_tags($_POST['host']);
+$uid = strip_tags($_POST['uid']);
+$pwd = strip_tags($_POST['pwd']);
 
 try {
-    $dbh = new PDO($_POST['method'] . ':host=' . $_POST['host'] , $_POST['uid'], $_POST['pwd']);
+    $dbh = new PDO($method . ':host=' . $host, $uid, $pwd);
     $output = '<select id="database_collation" name="database_collation">';
 
-    switch ($_POST['method']) {
+    switch ($method) {
         case 'pgsql':
             $output = '<select id="database_collation" name="database_collation">';
             $output .= '<option value="utf8mb4_general_ci" selected>utf8mb4_general_ci</option>';
             $output .= '</optgroup></select>';
-
             break;
         case 'mysql':
             $output = '<select id="database_collation" name="database_collation">';
-
             $sql = 'SHOW COLLATION';
-
             $_ = array();
             foreach ($dbh->query($sql) as $row) {
                 $_[$row[0]] = '';
@@ -42,7 +38,6 @@ try {
 
             foreach ($_ as $collation => $selected) {
                 $collation = htmlentities($collation);
-                // if(substr($collation,0,4)!=='utf8') continue;
                 if (strpos($collation, 'sjis') === 0) {
                     continue;
                 }

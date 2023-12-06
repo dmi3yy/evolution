@@ -1,8 +1,10 @@
 <?php
-
-$host = $_POST['host'];
-$uid = $_POST['uid'];
-$pwd = $_POST['pwd'];
+$method = strip_tags($_POST['method']);
+$host = strip_tags($_POST['host']);
+$uid = strip_tags($_POST['uid']);
+$pwd = strip_tags($_POST['pwd']);
+$tableprefix = strip_tags($_POST['tableprefix']);
+$database_name = strip_tags($_POST['database_name']);
 $installMode = $_POST['installMode'];
 
 $output = $_lang['status_checking_database'];
@@ -10,16 +12,15 @@ $h = explode(':', $host, 2);
 $database_collation = $_POST['database_collation'];
 $database_connection_method = $_POST['database_connection_method'];
 $database_charset = substr($database_collation, 0, strpos($database_collation, '_'));
-$tableprefix = $_POST['tableprefix'];
-if ($_POST['method'] == 'pgsql') {
+
+if ($method == 'pgsql') {
     if ($database_charset == 'utf8mb4') $database_charset = 'utf8';
     $database_charset = mb_strtoupper($database_charset);
 }
 try {
-    $dbh = new PDO($_POST['method'] . ':host=' . $_POST['host'] . ';dbname=' . $_POST['database_name'], $_POST['uid'], $_POST['pwd']);
-    switch ($_POST['method']) {
+    $dbh = new PDO($method . ':host=' . $host . ';dbname=' . $database_name, $uid, $pwd);
+    switch ($method) {
         case 'pgsql':
-
             $result = $dbh->query("SELECT * FROM pg_settings WHERE name='client_encoding'");
             if ($result->errorCode() == 0) {
                 $data = $result->fetch();
@@ -42,9 +43,7 @@ try {
             $result = $dbh->query("show variables like 'collation_database'");
             if ($result->errorCode() == 0) {
                 $data = $result->fetch();
-
                 if ($data['Value'] != $database_collation) {
-
                     echo $output . '<span id="database_fail" style="color:#FF0000;">' . sprintf($_lang['status_failed_database_collation_does_not_match'], $data['1']) . '</span>';
                     exit();
                 }
@@ -57,10 +56,10 @@ try {
                 }
                 $result = $dbh->query("SELECT SCHEMA_NAME
                       FROM INFORMATION_SCHEMA.SCHEMATA
-                     WHERE SCHEMA_NAME = '" . $_POST['database_name'] . "'");
+                     WHERE SCHEMA_NAME = '" . $pwd . "'");
                 if ($dbh->errorCode() == 0) {
                     $data = $result->fetch();
-                    if (isset($data['SCHEMA_NAME']) && $data['SCHEMA_NAME'] == $_POST['database_name']) {
+                    if (isset($data['SCHEMA_NAME']) && $data['SCHEMA_NAME'] == $pwd) {
                         echo $output . '<span id="database_pass" style="color:#80c000;"> ' . $_lang['status_passed'] . '</span>';
                         exit();
                     }
@@ -73,34 +72,30 @@ try {
     }
 
 } catch (PDOException $e) {
-    if (!stristr($e->getMessage(), 'database "' . $_POST['database_name'] . '" does not exist') && !stristr($e->getMessage(), 'Unknown database \'' . $_POST['database_name'] . '\'') && !stristr($e->getMessage(), 'Base table or view not found')) {
+    if (!stristr($e->getMessage(), 'database "' . $pwd . '" does not exist') && !stristr($e->getMessage(), 'Unknown database \'' . $database_name . '\'') && !stristr($e->getMessage(), 'Base table or view not found')) {
         echo $output . '<span id="database_fail" style="color:#FF0000;">' . $_lang['status_failed'] . ' ' . $e->getMessage() . '</span>';
         exit();
     }
 }
 
 try {
-    $dbh = new PDO($_POST['method'] . ':host=' . $_POST['host'] . ';', $_POST['uid'], $_POST['pwd']);
-
-
-    switch ($_POST['method']) {
+    $dbh = new PDO($method . ':host=' . $host . ';', $uid, $pwd);
+    switch ($method) {
         case 'pgsql':
-
             try {
-                $dbh->query('CREATE DATABASE "' . $_POST['database_name'] . '" ENCODING \'' . $database_charset . '\';');
+                $dbh->query('CREATE DATABASE "' . $database_name . '" ENCODING \'' . $database_charset . '\';');
                 if ($dbh->errorCode() > 0) {
                     if (stristr($dbh->errorInfo()[2], 'already exists') === false) {
                         $output .= '<span id="database_fail" style="color:#FF0000;">' . $_lang['status_failed_could_not_create_database'] . ' ' . print_r($dbh->errorInfo(), true) . '</span>';
                     }
                 }
-
             } catch (Exception $exception) {
                 echo $exception->getMessage();
             }
 
             break;
         case 'mysql':
-            $query = 'CREATE DATABASE IF NOT EXISTS `' . $_POST['database_name'] . '` CHARACTER SET ' . $database_charset . ' COLLATE ' . $database_collation . ";";
+            $query = 'CREATE DATABASE IF NOT EXISTS `' . $database_name . '` CHARACTER SET ' . $database_charset . ' COLLATE ' . $database_collation . ";";
             if (!$dbh->query($query)) {
                 $output .= '<span id="database_fail" style="color:#FF0000;">' . $_lang['status_failed_could_not_create_database'] . '</span>';
                 echo $output;
@@ -116,9 +111,7 @@ try {
     echo $output . '<span id="database_pass" style="color:#80c000;"> ' . $_lang['status_passed'] . '</span>';
     exit();
 } catch (PDOException $e) {
-
     echo $output . '<span id="database_fail" style="color:#FF0000;">' . $_lang['status_failed'] . ' ' . $e->getMessage() . '</span>';
-
 }
 
 echo $output;
