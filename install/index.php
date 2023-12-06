@@ -1,6 +1,6 @@
 <?php
 /**
- * EVO Installer
+ * Evolution CMS Installer
  */
 error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 $base_path = dirname(__DIR__) . '/';
@@ -37,8 +37,8 @@ if (empty($_GET['s'])) {
     install_sessionCheck();
 
     $moduleName = 'Evolution CMS';
-    $moduleVersion = $modx_branch . ' ' . $modx_version;
-    $moduleRelease = $modx_release_date;
+    $moduleVersion = $evo_branch . ' ' . $evo_version;
+    $moduleRelease = $evo_release_date;
     $moduleSQLBaseFile = 'stubs/sql/setup.sql';
     $moduleSQLDataFile = 'stubs/sql/setup.data.sql';
     $moduleSQLResetFile = 'stubs/sql/setup.data.reset.sql';

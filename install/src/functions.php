@@ -85,7 +85,7 @@ if (!function_exists('ph')) {
      */
     function ph()
     {
-        global $_lang, $moduleName, $moduleVersion, $modx_textdir, $modx_release_date;
+        global $_lang, $moduleName, $moduleVersion, $evo_textdir, $evo_release_date;
         $ph = [];
 
         if (isset($_SESSION['installmode'])) {
@@ -95,9 +95,9 @@ if (!function_exists('ph')) {
         }
 
         $ph['pagetitle'] = $_lang['modx_install'];
-        $ph['textdir'] = $modx_textdir ? ' id="rtl"' : '';
+        $ph['textdir'] = $evo_textdir ? ' id="rtl"' : '';
         $ph['version'] = $moduleVersion;
-        $ph['release_date'] = ($modx_textdir ? '&rlm;' : '') . $modx_release_date;
+        $ph['release_date'] = ($evo_textdir ? '&rlm;' : '') . $evo_release_date;
         $ph['footer1'] = $_lang['modx_footer1'];
         $ph['footer2'] = $_lang['modx_footer2'];
         $ph['current_year'] = date('Y');

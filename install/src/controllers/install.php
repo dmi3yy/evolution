@@ -1,6 +1,4 @@
-<?php
-
-use EvolutionCMS\Facades\Console;
+<?php use EvolutionCMS\Facades\Console;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -424,7 +422,7 @@ try {
                     $chunkRecordOld = \EvolutionCMS\Models\SiteHtmlsnippet::query()->where('name', $name);
                     $count_original_name = $chunkRecordOld->count();
                     if ($overwrite == 'false') {
-                        $newname = $name . '-' . str_replace('.', '_', $modx_version);
+                        $newname = $name . '-' . str_replace('.', '_', $evo_version);
 
                         $chunkRecord = \EvolutionCMS\Models\SiteHtmlsnippet::query()->where('name', $newname);
                         $count_new_name = $chunkRecord->count();
@@ -446,14 +444,12 @@ try {
                             $installDataLevel['chunks'][$moduleChunk[0]]['type'] = 'create';
                         }
                         \EvolutionCMS\Models\SiteHtmlsnippet::insert(['name' => $name, 'description' => $desc, 'snippet' => $chunk, 'category' => $category_id]);
-
                     }
                 }
             } else {
                 $installDataLevel['chunks'][$moduleChunk[0]]['type'] = 'skip';
             }
         }
-
     }
 
     // Install Modules
@@ -569,11 +565,9 @@ try {
                         'type' => 'file_not_found'
                     );
                 } else {
-
                     // disable legacy versions based on legacy_names provided
                     if (!empty($leg_names)) {
                         \EvolutionCMS\Models\SitePlugin::query()->whereIn('name', $leg_names)->update(['disabled' => 1]);
-
                     }
 
                     // Create the category if it does not already exist
@@ -670,7 +664,6 @@ try {
             }
         }
     }
-
 
     // Install Snippets
     if ($installLevel === 5 && $errorData === false && (isset ($_POST['snippet']) || $installData)) {

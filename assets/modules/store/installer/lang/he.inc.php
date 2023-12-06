@@ -10,7 +10,7 @@
  * Language:       Hebrew
  * Encoding:       UTF-8
  */
-$modx_textdir = 'rtl';
+$evo_textdir = 'rtl';
 
 $_lang["alert_database_test_connection"] = 'You need to create your database or test the selection of your database!';
 $_lang["alert_database_test_connection_failed"] = 'The test of your database selection has failed!';
@@ -105,7 +105,7 @@ $_lang["installing_demo_site"] = 'התקנת אתר דוגמא: ';
 $_lang["language_code"] = 'he';	// for html element e.g. <html xml:lang="en" lang="en">
 $_lang["loading"] = 'טוען...';
 $_lang["modules"] = 'מודולים';
-$_lang["modx_footer1"] = '&copy; 2005-2023 the <a href="http://www.modxcms.com/" target="_blank" style="color: green; text-decoration:underline">MODx</a> Content Mangement Framework (CMF) project. All rights reserved. MODx is licensed under the GNU GPL.';
+$_lang["modx_footer1"] = '&copy; 2005 - 2024 the <a href="https://evo.im/" target="_blank" style="color: green; text-decoration:underline">Evolution CMS</a> Content Mangement Framework (CMF) project. All rights reserved. Evolution CMS is licensed under the GNU GPL.';
 $_lang["modx_footer2"] = 'MODx is free software.  We encourage you to be creative and make use of MODx in any way you see fit. Just make sure that if you do make changes and decide to redistribute your modified MODx, that you keep the source code free!';
 $_lang["modx_install"] = 'MODx &raquo; Install';
 $_lang["modx_requires_php"] = ', and MODx requires PHP 4.2.0 or later';
