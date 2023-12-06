@@ -56,18 +56,17 @@ switch($installMode){
 $ph['install_language'] = $install_language;
 $ph['manager_language'] = $manager_language;
 $ph['installMode'] = $installMode;
-$ph['database_name'] = trim($_POST['database_name'], '`');
-$ph['tableprefix'] = $_POST['tableprefix'];
+$ph['database_name'] = strip_tags(trim($_POST['database_name'], '`'));
+$ph['tableprefix'] = strip_tags($_POST['tableprefix']);
 $ph['database_type'] = $_POST['database_type'];
 $ph['database_collation'] = $_POST['database_collation'];
 $ph['database_connection_charset'] = $_POST['database_connection_charset'];
 $ph['database_connection_method'] = $_POST['database_connection_method'];
-$ph['databasehost'] = $_POST['databasehost'];
-$ph['cmsadmin'] = trim($_POST['cmsadmin'] ?? '');
-$ph['cmsadminemail'] = trim($_POST['cmsadminemail'] ?? '');
-$ph['cmspassword'] = trim($_POST['cmspassword'] ?? '');
-$ph['cmspasswordconfirm'] = trim($_POST['cmspasswordconfirm'] ?? '');
-
+$ph['databasehost'] = strip_tags($_POST['databasehost']);
+$ph['cmsadmin'] = strip_tags(trim($_POST['cmsadmin'] ?? ''));
+$ph['cmsadminemail'] = strip_tags(trim($_POST['cmsadminemail'] ?? ''));
+$ph['cmspassword'] = strip_tags(trim($_POST['cmspassword'] ?? ''));
+$ph['cmspasswordconfirm'] = strip_tags(trim($_POST['cmspasswordconfirm'] ?? ''));
 $ph['checked'] = isset ($_POST['installdata']) && $_POST['installdata'] == '1' ? 'checked' : '';
 
 # load setup information file
@@ -78,7 +77,6 @@ $ph['chunks']    = getChunks($moduleChunks);
 $ph['modules']   = getModules($moduleModules);
 $ph['plugins']   = getPlugins($modulePlugins);
 $ph['snippets']  = getSnippets($moduleSnippets);
-
 $ph['action'] = ($installMode == 1) ? 'mode' : 'connection';
 
 $tpl = file_get_contents(dirname(__DIR__) . '/template/actions/options.tpl');

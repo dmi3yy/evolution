@@ -13,7 +13,9 @@ if (!function_exists('f_owc')) {
             fwrite($hnd, $data);
             fclose($hnd);
 
-            if (null !== $mode) chmod($path, $mode);
+            if (!is_null($mode)) {
+                chmod($path, $mode);
+            }
         } catch (Exception $e) {
             // Nothing, this is NOT normal
             unset($e);
@@ -22,7 +24,9 @@ if (!function_exists('f_owc')) {
 }
 
 $installMode = isset($_POST['installmode']) ? (int)$_POST['installmode'] : 0;
-if (!isset($_lang)) $_lang = array();
+if (!isset($_lang)) {
+    $_lang = [];
+}
 
 echo '<div class="stepcontainer">
       <ul class="progressbar">
@@ -170,23 +174,22 @@ if ($installMode == 1) {
     $database_type = $db_config['driver'];
 } else {
     // get db info from post
-    $database_type = $_POST['database_type'];
-    $database_server = $_POST['databasehost'];
+    $database_type = strip_tags($_POST['database_type']);
+    $database_server = strip_tags($_POST['databasehost']);
     $database_user = $_SESSION['databaseloginname'];
     $database_password = $_SESSION['databaseloginpassword'];
-    $database_collation = $_POST['database_collation'];
+    $database_collation = strip_tags($_POST['database_collation']);
     $database_charset = substr($database_collation, 0, strpos($database_collation, '_') - 1);
     $database_connection_charset = $_POST['database_connection_charset'];
     $database_connection_method = $_POST['database_connection_method'];
-    $dbase = '`' . $_POST['database_name'] . '`';
-    $table_prefix = $_POST['tableprefix'];
+    $dbase = '`' . strip_tags($_POST['database_name']) . '`';
+    $table_prefix = strip_tags($_POST['tableprefix']);
 }
 echo '<p>' . $_lang['creating_database_connection'];
 $host = explode(':', $database_server, 2);
 try {
     $dbh = new PDO($database_type . ':host=' . $database_server . ';dbname=' . $_POST['database_name'], $database_user, $database_password);
     echo '<span class="ok">' . $_lang['ok'] . '</span></p>';
-
 } catch (PDOException $e) {
     $errors++;
     echo '<span class="notok">' . $_lang['database_connection_failed'] . '</span><p />' . $_lang['database_connection_failed_note'] . $e->getMessage() . '</p>';
@@ -237,7 +240,6 @@ if ($dbh->errorCode() == 0 && $installMode == 0) {
         echo '<span class="notok">' . $_lang['failed'] . '</span></b>' . $_lang['table_prefix_not_exist'] . '</p>';
         $errors++;
         echo '<p>' . $_lang['table_prefix_not_exist_note'] . '</p>';
-
     }
 }
 
@@ -246,7 +248,6 @@ if (is_writable("../assets/cache")) {
         @chmod('../assets/cache/installProc.inc.php', 0755);
         unlink('../assets/cache/installProc.inc.php');
     }
-
     f_owc("../assets/cache/installProc.inc.php", '<?php $installStartTime = ' . time() . '; ?>');
 }
 
@@ -287,10 +288,10 @@ $agreeToggle = $errors > 0 ? '' : ' onclick="if(document.getElementById(\'chkagr
         <input type="hidden" value="<?php echo $database_connection_charset ?>" name="database_connection_charset"/>
         <input type="hidden" value="<?php echo $database_connection_method ?>" name="database_connection_method"/>
         <input type="hidden" value="<?php echo $database_server ?>" name="databasehost"/>
-        <input type="hidden" value="<?php echo $_POST['cmsadmin'] ?>" name="cmsadmin"/>
-        <input type="hidden" value="<?php echo $_POST['cmsadminemail'] ?>" name="cmsadminemail"/>
-        <input type="hidden" value="<?php echo $_POST['cmspassword'] ?>" name="cmspassword"/>
-        <input type="hidden" value="<?php echo $_POST['cmspasswordconfirm'] ?>" name="cmspasswordconfirm"/>
+        <input type="hidden" value="<?php echo strip_tags($_POST['cmsadmin']) ?>" name="cmsadmin"/>
+        <input type="hidden" value="<?php echo strip_tags($_POST['cmsadminemail']) ?>" name="cmsadminemail"/>
+        <input type="hidden" value="<?php echo strip_tags($_POST['cmspassword']) ?>" name="cmspassword"/>
+        <input type="hidden" value="<?php echo strip_tags($_POST['cmspasswordconfirm']) ?>" name="cmspasswordconfirm"/>
         <input type="hidden" value="1" name="options_selected"/>
         <input type="hidden" value="<?php echo $_POST['installdata'] ?? '' ?>" name="installdata"/>
         <?php
@@ -313,13 +314,10 @@ $agreeToggle = $errors > 0 ? '' : ' onclick="if(document.getElementById(\'chkagr
         foreach ($modules as $i => $module) echo '<input type="hidden" name="module[]" value="' . $module . '" />';
         ?>
     </div>
-
     <h2><?php echo $_lang['agree_to_terms']; ?></h2>
     <p>
-        <input type="checkbox" value="1" id="chkagree" name="chkagree"
-               style="line-height:18px" <?php echo isset($_POST['chkagree']) ? 'checked="checked" ' : ""; ?><?php echo $agreeToggle; ?>/><label
-                for="chkagree"
-                style="display:inline;float:none;line-height:18px;"> <?php echo $_lang['iagree_box'] ?> </label>
+        <input type="checkbox" value="1" id="chkagree" name="chkagree" style="line-height:18px" <?php echo isset($_POST['chkagree']) ? 'checked="checked" ' : ""; ?><?php echo $agreeToggle; ?>/>
+        <label for="chkagree" style="display:inline;float:none;line-height:18px;"> <?php echo $_lang['iagree_box'] ?> </label>
     </p>
     <p class="buttonlinks">
         <a href="javascript:document.getElementById('install_form').action='index.php?action=options&language=<?php echo $install_language ?>';document.getElementById('install_form').submit();"

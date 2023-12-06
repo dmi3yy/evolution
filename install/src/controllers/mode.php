@@ -3,10 +3,10 @@
 $upgradeable = 0;
 if (is_file(EVO_CORE_PATH . 'config/database/connections/default.php')) { // Include the file so we can test its validity
     $db_config = include_once EVO_CORE_PATH . 'config/database/connections/default.php';
-    // We need to have all connection settings - tho prefix may be empty so we have to ignore it
+    // We need to have all connection settings - tho prefix may be empty, so we have to ignore it
     if (isset($db_config['database'])) {
         try {
-        $dbh = new PDO($db_config['method'] . ':host=' . $db_config['host'] . ';dbname=' . $db_config['database'], $db_config['username'], $db_config['password']);
+            $dbh = new PDO($db_config['method'] . ':host=' . $db_config['host'] . ';dbname=' . $db_config['database'], $db_config['username'], $db_config['password']);
             $upgradeable = isset($_POST['installmode']) && $_POST['installmode'] == 'new' ? 0 : 2;
         } catch (PDOException $e) {
             $upgradeable = 1;

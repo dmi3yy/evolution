@@ -6,9 +6,7 @@ $upgradeable = 0;
 if ($installMode === 0) {
     $database_name = '';
     $database_server = 'localhost';
-    $table_prefix = base_convert(mt_rand(10, 20), 10, 36) .
-        substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), mt_rand(0, 33), 3) .
-        '_';
+    $table_prefix = base_convert(mt_rand(10, 20), 10, 36) . substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyz'), mt_rand(0, 33), 3) . '_';
 } else {
     $database_name = '';
 
@@ -66,17 +64,17 @@ if ($upgradeable && (!isset($database_connection_method) || empty($database_conn
     $database_connection_method = 'SET CHARACTER SET';
 }
 
-$ph['database_name'] = isset($_POST['database_name']) ? $_POST['database_name'] : $database_name;
-$ph['tableprefix'] = isset($_POST['tableprefix']) ? $_POST['tableprefix'] : $table_prefix;
+$ph['database_name'] = isset($_POST['database_name']) ? strip_tags($_POST['database_name']) : $database_name;
+$ph['tableprefix'] = isset($_POST['tableprefix']) ? strip_tags($_POST['tableprefix']) : $table_prefix;
 $ph['selected_set_character_set'] = isset($database_connection_method) && $database_connection_method === 'SET CHARACTER SET' ? 'selected' : '';
 $ph['selected_set_names'] = isset($database_connection_method) && $database_connection_method === 'SET NAMES' ? 'selected' : '';
 $ph['show#connection_method'] = (($installMode == 0) || ($installMode == 2)) ? 'block' : 'none';
 $ph['database_collation'] = isset($_POST['database_collation']) ? $_POST['database_collation'] : $database_collation;
 $ph['show#AUH'] = ($installMode == 0) ? 'block' : 'none';
-$ph['cmsadmin'] = isset($_POST['cmsadmin']) ? $_POST['cmsadmin'] : 'admin';
-$ph['cmsadminemail'] = isset($_POST['cmsadminemail']) ? $_POST['cmsadminemail'] : '';
-$ph['cmspassword'] = isset($_POST['cmspassword']) ? $_POST['cmspassword'] : '';
-$ph['cmspasswordconfirm'] = isset($_POST['cmspasswordconfirm']) ? $_POST['cmspasswordconfirm'] : '';
+$ph['cmsadmin'] = isset($_POST['cmsadmin']) ? strip_tags($_POST['cmsadmin']) : 'admin';
+$ph['cmsadminemail'] = isset($_POST['cmsadminemail']) ? strip_tags($_POST['cmsadminemail']) : '';
+$ph['cmspassword'] = isset($_POST['cmspassword']) ? strip_tags($_POST['cmspassword']) : '';
+$ph['cmspasswordconfirm'] = isset($_POST['cmspasswordconfirm']) ? strip_tags($_POST['cmspasswordconfirm']) : '';
 $ph['managerLangs'] = getLangs($install_language);
 $ph['install_language'] = $install_language;
 $ph['installMode'] = $installMode;
