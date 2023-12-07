@@ -43,7 +43,7 @@ Run command ```php core/artisan salo:install``` for generating **docker-compose.
 
 To run **Evolution CMS** using Docker, run the ```php core/artisan salo:up``` command in the terminal. Additional configuration and access options can be found in the **docker-compose.yml** file and the docker folder.
 
-To stop the container, use the ```php core/artisan salo:down command```.
+To stop the container, use the ```php core/artisan salo:down``` command.
 
 #### For Windows
 
