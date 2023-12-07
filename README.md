@@ -35,7 +35,7 @@ Most significant, though, is **Evolution CMS's** ability to empower you to quick
 
 ## Install
 You can use the single click installer: [Evolution CMS Installer](https://github.com/evolution-cms/installer)
-Evolution CMS 3.2 requires **PHP >= 8.1**
+Evolution CMS 3.2.x requires **PHP >= 8.1**
 
 ## Docker
 
@@ -47,7 +47,7 @@ To stop the container, use the ```php core/artisan salo:down``` command.
 
 #### For Windows
 
-See documentation for install WSL https://learn.microsoft.com/uk-ua/windows/wsl/install-manual
+See documentation for install WSL https://learn.microsoft.com/en-us/windows/wsl/install-manual
 
 ## References
 
