@@ -3,7 +3,7 @@ version: '3'
 services:
     evo.php:
         build:
-            context: core/vendor/evolution-cms/salo/runtimes/8.2
+            context: core/vendor/evolutioncms/salo2/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -19,6 +19,16 @@ services:
             - salo
 {{depends}}
 {{services}}
+    adminer:
+        image: adminer:latest
+        restart: always
+        environment:
+            ADMINER_DEFAULT_SERVER: {{defaultDB}}
+        ports:
+            - '8080:8080'
+        networks:
+            - salo
+{{depends}}
 networks:
     salo:
         driver: bridge

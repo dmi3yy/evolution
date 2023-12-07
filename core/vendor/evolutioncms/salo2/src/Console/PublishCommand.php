@@ -1,6 +1,4 @@
-<?php
-
-namespace EvolutionCMS\Salo\Console;
+<?php namespace EvolutionCMS\Salo\Console;
 
 use Illuminate\Console\Command;
 
@@ -18,7 +16,7 @@ class PublishCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Publish the Laravel Salo Docker files';
+    protected $description = 'Publish the Evo Salo Docker files';
 
     /**
      * Execute the console command.
@@ -34,11 +32,9 @@ class PublishCommand extends Command
             str_replace(
                 [
                     './vendor/laravel/salo/runtimes/8.2',
-                    './vendor/laravel/salo/runtimes/7.4',
                 ],
                 [
                     './docker/8.2',
-                    './docker/7.4',
                 ],
                 file_get_contents($this->laravel->basePath('docker-compose.yml'))
             )

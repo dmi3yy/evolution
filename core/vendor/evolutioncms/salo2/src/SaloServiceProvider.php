@@ -1,11 +1,12 @@
-<?php
+<?php namespace EvolutionCMS\Salo;
 
-namespace EvolutionCMS\Salo;
-
-use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
+use EvolutionCMS\Salo\Console\BuildCommand;
+use EvolutionCMS\Salo\Console\DownCommand;
 use EvolutionCMS\Salo\Console\InstallCommand;
 use EvolutionCMS\Salo\Console\PublishCommand;
+use EvolutionCMS\Salo\Console\UpCommand;
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 
 class SaloServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -29,8 +30,11 @@ class SaloServiceProvider extends ServiceProvider implements DeferrableProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                BuildCommand::class,
+                DownCommand::class,
                 InstallCommand::class,
                 PublishCommand::class,
+                UpCommand::class,
             ]);
         }
     }
@@ -61,8 +65,11 @@ class SaloServiceProvider extends ServiceProvider implements DeferrableProvider
     public function provides()
     {
         return [
+            BuildCommand::class,
+            DownCommand::class,
             InstallCommand::class,
             PublishCommand::class,
+            UpCommand::class,
         ];
     }
 }

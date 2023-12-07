@@ -1,6 +1,4 @@
-<?php
-
-namespace EvolutionCMS\Salo\Console;
+<?php namespace EvolutionCMS\Salo\Console;
 
 use Illuminate\Console\Command;
 
@@ -18,7 +16,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Install Laravel Salo\'s default Docker Compose file';
+    protected $description = 'Install Evo Salo\'s default Docker Compose file';
 
     /**
      * Execute the console command.
@@ -81,6 +79,13 @@ class InstallCommand extends Command
             return file_get_contents(__DIR__ . "/../../stubs/{$service}.stub");
         })->implode(''));
 
+        $defaultDB = collect($services)
+            ->filter(function ($service) {
+                return in_array($service, ['mysql', 'pgsql', 'mariadb']);
+            })->map(function ($service) {
+                return "{$service}";
+            })->first();
+
         $volumes = collect($services)
             ->filter(function ($service) {
                 return in_array($service, ['mysql', 'pgsql', 'mariadb', 'redis', 'meilisearch', 'minio']);
@@ -93,6 +98,7 @@ class InstallCommand extends Command
         $dockerCompose = file_get_contents(__DIR__ . '/../../stubs/docker-compose.stub');
 
         $dockerCompose = str_replace('{{depends}}', empty($depends) ? '' : '        ' . $depends, $dockerCompose);
+        $dockerCompose = str_replace('{{defaultDB}}', $defaultDB, $dockerCompose);
         $dockerCompose = str_replace('{{services}}', $stubs, $dockerCompose);
         $dockerCompose = str_replace('{{volumes}}', $volumes, $dockerCompose);
 

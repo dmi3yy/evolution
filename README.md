@@ -17,7 +17,7 @@
 
 ## History
 
-Initially inspired by **Etomite 0.6**, then it been **MODX Evolution 0.7 - 1.0.8** is an ongoing project written by *Raymond Irving* and a core team of contributors **MODX**, and now its **Evolution CMS** maintained by *Dmytro Lukianenko* and a core team of contributors at the **Evolution CMS Project**.
+Initially inspired by **Etomite 0.6**, then it has been **MODX Evolution 0.7 - 1.0.8** is an ongoing project written by *Raymond Irving* and a core team of contributors **MODX**, and now its **Evolution CMS** maintained by *Dmytro Lukianenko* and a core team of contributors at the **Evolution CMS Project**.
 
 ## License
 
@@ -39,9 +39,11 @@ Evolution CMS 3.2 requires **PHP >= 8.1**
 
 ## Docker
 
-Run command ``` php core/artisan salo:install ``` for generating **docker-compose.yml** file.
+Run command ```php core/artisan salo:install``` for generating **docker-compose.yml** file. And ```php core/artisan salo:build``` for build Docker container.
 
-To run **Evolution CMS** using docker make **docker-compose up -d** command in your terminal. Additional configs and access parameters you can find in **docker-compose.yml** file and **docker** folder
+To run **Evolution CMS** using Docker, run the ```php core/artisan salo:up``` command in the terminal. Additional configuration and access options can be found in the **docker-compose.yml** file and the docker folder.
+
+To stop the container, use the ```php core/artisan salo:down command```.
 
 #### For Windows
 
