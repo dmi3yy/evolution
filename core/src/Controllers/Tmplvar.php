@@ -210,7 +210,7 @@ class Tmplvar extends AbstractController implements ManagerTheme\PageControllerI
             $_SESSION['itemname'] = $this->managerTheme->getLexicon('new_template');
             $data->category = isset($_REQUEST['catid']) ? (int) $_REQUEST['catid'] : 0;
         }
-        $data->properties = json_decode($data->properties, true) ?? [];
+        $data->properties = json_decode($data->properties ?? '', true) ?? [];
         $values = $this->managerTheme->loadValuesFromSession($_POST);
         if ($values) {
             $data->fill($values);
