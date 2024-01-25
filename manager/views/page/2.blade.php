@@ -128,7 +128,7 @@
     if ($activeUsers->count() < 1) {
         $html = '<p>[%no_active_users_found%]</p>';
     } else {
-        $now = $modx->timestamp($_SERVER['REQUEST_TIME']);
+        $now = evo()->now()->unix();
         if (extension_loaded('intl')) {
             // https://www.php.net/manual/en/class.intldateformatter.php
             // https://www.php.net/manual/en/datetime.createfromformat.php
@@ -162,7 +162,7 @@
         foreach ($activeUsers->get()->toArray() as $activeUser) {
             $userCount[$activeUser['internalKey']] = isset($userCount[$activeUser['internalKey']]) ? $userCount[$activeUser['internalKey']] + 1 : 1;
 
-            $idle = $activeUser['lasthit'] < $timetocheck ? ' class="userIdle"' : '';
+            $idle = ($activeUser['lasthit'] + evo()->getConfig('server_offset_time')) < $timetocheck ? ' class="userIdle"' : '';
             $webicon = $activeUser['internalKey'] < 0 ? '<i class="[&icon_globe&]"></i>' : '';
             $ip = $activeUser['ip'] === '::1' ? '127.0.0.1' : $activeUser['ip'];
             $currentaction = EvolutionCMS\Legacy\LogHandler::getAction($activeUser['action'], $activeUser['id']);
@@ -170,9 +170,9 @@
                 // https://www.php.net/manual/en/class.intldateformatter.php
                 // https://www.php.net/manual/en/datetime.createfromformat.php
                 $formatter = new IntlDateFormatter(evolutionCMS()->getConfig('manager_language'), IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, null, null, 'HH:mm:ss');
-                $lasthit = $formatter->format($modx->timestamp($activeUser['lasthit']));
+                $lasthit = $formatter->format(evo()->timestamp($activeUser['lasthit']));
             } else {
-                $lasthit = date('H:i:s', $modx->timestamp($activeUser['lasthit']));
+                $lasthit = date('H:i:s', evo()->timestamp($activeUser['lasthit']));
             }
             $userList[] = [$idle, '', $activeUser['username'], $webicon, abs($activeUser['internalKey']), $ip, $lasthit, $currentaction];
         }
