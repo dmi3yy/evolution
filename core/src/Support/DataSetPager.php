@@ -24,6 +24,8 @@ class DataSetPager implements DataSetPagerInterface
     // normal page
     public $pageStyle;
     public $pageClass;
+    public $cssStyle;
+    public $cssClass;
 
     // selected page
     public $selPageStyle;
