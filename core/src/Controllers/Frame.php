@@ -166,7 +166,7 @@ class Frame extends AbstractController implements ManagerTheme\PageControllerInt
 
     protected function registerCss(): string
     {
-        $this->parameters['css'] = $this->managerTheme->getThemeDir(false) . 'css/page.css?v=' . EVO_INSTALL_TIME;
+        $this->parameters['css'] = $this->managerTheme->getThemeDir(false) . 'css/page.css?v=' . evo()->getVersionData('version') . '.' . EVO_INSTALL_TIME;
 
         $themeDir = $this->managerTheme->getThemeDir();
 
@@ -184,7 +184,7 @@ class Frame extends AbstractController implements ManagerTheme\PageControllerInt
             }
 
             if (file_exists($themeDir . 'css/styles.min.css')) {
-                $this->parameters['css'] = $this->managerTheme->getThemeDir(false) . 'css/styles.min.css?v=' . EVO_INSTALL_TIME;
+                $this->parameters['css'] = $this->managerTheme->getThemeDir(false) . 'css/styles.min.css?v=' . evo()->getVersionData('version') . '.' . EVO_INSTALL_TIME;
             }
         }
 

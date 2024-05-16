@@ -1,5 +1,4 @@
 <?php
-
 if (!function_exists('getDefaultTemplate')) {
     /**
      * @return string
@@ -23,9 +22,7 @@ if (!function_exists('getDefaultTemplate')) {
                         }
                     }
                 } else {
-
-                    $sibl = $modx->getDocumentChildren($_REQUEST['pid'], 1, 0, 'template,menuindex', [],
-                        'isfolder', 'ASC', 1);
+                    $sibl = evo()->getDocumentChildren($_REQUEST['pid'], 1, 0, 'template,menuindex', [], 'isfolder', 'ASC', 1);
 
                     if (isset($sibl[0]['template']) && $sibl[0]['template'] !== '') {
                         $default_template = $sibl[0]['template'];
