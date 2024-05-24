@@ -1035,7 +1035,7 @@ class browser extends uploader
                     if($index + 1 <=(count($path) - 1)) {
                         $dirs[$i]['dirs'] = $this->getTree($dir, $index + 1);
                     }
-                    if (!is_array($dirs[$i]['dirs']) || !count($dirs[$i]['dirs'])) {
+                    if (!isset($dirs[$i]['dirs']) || !is_array($dirs[$i]['dirs']) || !count($dirs[$i]['dirs'])) {
                         unset($dirs[$i]['dirs']);
                         continue;
                     }
