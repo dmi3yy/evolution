@@ -173,11 +173,14 @@ class SiteUpdateCommand extends Command
             $application->setAutoExit(false);
             $application->run($input);
             $this->line('<fg=green>Run Migrations</>');
-
             exec('php  ../install/cli-install.php --typeInstall=2 --removeInstall=y');
-            $this->line('<fg=green>Remove Install Directory</>');
 
+            $this->line('<fg=green>Remove Install Directory</>');
             self::rmdirs(MODX_BASE_PATH . 'install');
+
+            $this->line('<fg=green>Run Composer update</>');
+            exec('composer update');
+
             $this->line('<fg=yellow;bg=blue>Now You use ' . $factoryName . '</>');
         } else {
             $this->line('<fg=yellow;bg=blue>You use almost current version</>');
