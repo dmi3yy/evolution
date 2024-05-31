@@ -1,6 +1,14 @@
 This file shows the changes in recent releases of Evolution CMS. The most current release is usually the
 development release, and is only shown to give an idea of what's currently in the pipeline.
 
+Evolution CMS 3.2.5 (May 31, 2024)
+* [GitHub: 25400e7] - Fix PHP 8.3 fixes. (Seiger)
+* [GitHub: e275891] - Fix Json error in TV Controller. (Seiger)
+* [GitHub: 0692c69] - Fix Manager CSS version and refactor code. (Seiger)
+* [GitHub: ef7241f] - Fix Last users highlight. (Seiger)
+* [GitHub: e33b3ec] - Fix Image browser. (Seiger)
+* [GitHub: 8f1fde6] - Add License file. (Seiger)
+
 Evolution CMS 3.2.4 (December 7, 2023)
 * [GitHub: 29045e9] - Add Nginx config file. (Seiger)
 * [GitHub: bda3ee8] - Add 'document' as content type in case if it's defaulted due to plugin error. (elcreator)
