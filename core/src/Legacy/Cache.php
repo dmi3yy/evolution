@@ -189,7 +189,7 @@ class Cache
 
         // Write $somecontent to our opened file.
         if (fwrite($handle, $content) === false) {
-            exit("Cannot write publishing info file! Make sure the assets/cache directory is writable!");
+            exit("Cannot write publishing info file! Make sure the {$filename} and its directory is writable!");
         }
     }
 
