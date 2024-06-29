@@ -26,6 +26,7 @@ require_once __DIR__ . '/includes/legacy.inc.php';
 
 require_once __DIR__ . '/includes/protect.inc.php'; // harden it
 
-if ((! is_cli() && session_status() === PHP_SESSION_NONE) && (!defined('NO_SESSION'))) {
+if ((! is_cli() && session_status() === PHP_SESSION_NONE) &&
+    (defined('IN_MANAGER_MODE') && IN_MANAGER_MODE || !defined('NO_SESSION'))) {
     startCMSSession(); // start session
 }
