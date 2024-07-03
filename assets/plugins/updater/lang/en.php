@@ -29,3 +29,4 @@ $_lang['error_overwrite'] = 'Evolution CMS files are not available for overwriti
 $_lang['error_failedtogetfeed'] = 'Failed to retrieve feed';
 
 $_lang['artisan_update'] = 'For update run console command from <b>core</b> folder: <b>php artisan make:site update</b>';
+$_lang["help_donate_msg"] = 'Buy coffee from the Evolution CMS developers at <a href="https://ko-fi.com/evolutioncms" target="_blank">ko-fi.com/evolutioncms ☕</a>. Become a fan of Evolution CMS ❤️ today!';

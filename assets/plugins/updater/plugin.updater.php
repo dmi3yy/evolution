@@ -217,10 +217,11 @@ if ($role != 1 && $wdgVisibility == 'AdminOnly') {
                     $updateButton = '<a target="_parent" onclick="return confirm(\'' . $_lang['are_you_sure_update'] . '\')" href="' . MODX_SITE_URL . $_SESSION['updatelink'] . '" class="btn btn-sm btn-danger">' . $_lang['updateButton_txt'] . ' ' . $git['version'] . '</a><br><br>';
                 }
 
-                $output = '<div class="card-body">' . $_lang['cms_outdated_msg'] . ' <strong>' . $git['version'] . '</strong> <br><br>
-                    ' . $updateButton . '
+                $output = '<div class="card-body">' . $_lang['cms_outdated_msg'] . ' <strong>' . $git['version']
+                    . '</strong><br><br>' . $updateButton . '
                     <small style="color:red;font-size:10px"> ' . $_lang['bkp_before_msg'] . '</small>
-                    <small style="color:red;font-size:10px">' . $errorsMessage . '</small></div>';
+                    <small style="color:red;font-size:10px">' . $errorsMessage . '</small>
+                    <br><br><small style="font-size:10px"> ' . $_lang['help_donate_msg'] . '</small></div>';
 
                 $widgets['updater'] = array(
                     'menuindex' => '1',

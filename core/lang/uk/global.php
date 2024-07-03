@@ -380,7 +380,7 @@ $_lang["group_access_permissions"] = 'Доступ груп користувач
 $_lang['group_tvs'] = 'Групувати ТВ параметри';
 $_lang["guid"] = 'GUID';
 $_lang["help"] = 'Допомога';
-$_lang["help_donate_msg"] = 'Купуйте каву розробникам Evolution CMS. <a href="https://ko-fi.com/evolutioncms" target="_blank">ko-fi.com/evolutioncms ☕</a> Станьте прихильником Evolution CMS сьогодні! ❤️ Ko-fi дозволяє підтримувати творців, яких ви любите, без жодної комісії за пожертви.';
+$_lang["help_donate_msg"] = 'Купуйте каву розробникам Evolution CMS на <a href="https://ko-fi.com/evolutioncms" target="_blank">ko-fi.com/evolutioncms ☕</a>. Станьте прихильником Evolution CMS ❤️ сьогодні!.';
 $_lang["help_donate_title"] = 'На розвиток Evolution CMS';
 $_lang["help_msg"] = '<p>Ви можете отримати безкоштовну Допомогу спільноти EVO <a href="https://evo.im" target="_blank">на форумах EVO</a>. Дивіться також <a href="https://docs.evo.im" target="_blank">\'Документація і уроки по EVO\'</a>, де докладно описано кожен аспект системи.</p>';
 $_lang["help_title"] = 'Допомога';

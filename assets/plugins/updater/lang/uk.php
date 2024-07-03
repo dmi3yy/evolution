@@ -29,3 +29,4 @@ $_lang['error_overwrite'] = 'Файли Evolution CMS недоступні дл�
 $_lang['error_failedtogetfeed'] = 'Не вдалося отримати канал';
 
 $_lang['artisan_update'] = 'Для оновлення запустіть консольну команду з <b>core</b> теки: <b>php artisan make:site update</b>';
+$_lang["help_donate_msg"] = 'Купуйте каву розробникам Evolution CMS на <a href="https://ko-fi.com/evolutioncms" target="_blank">ko-fi.com/evolutioncms ☕</a>. Станьте прихильником Evolution CMS ❤️ сьогодні!';
