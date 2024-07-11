@@ -584,11 +584,11 @@ class UrlProcessor
                             $alias = $al['alias'];
                         }
 
-                        if ($al['alias_visible'] === 0 && $al['isfolder'] === 1) {
-                            $alias = $alPath;
-                        } else {
+                        //if ($al['alias_visible'] === 0 && $al['isfolder'] === 1) {
+                        //    $alias = $alPath;
+                        //} else {
                             $alias = $alPath . $f_url_prefix . $alias . $f_url_suffix;
-                        }
+                        //}
                     }
                 }
 

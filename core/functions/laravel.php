@@ -85,7 +85,7 @@ if (! function_exists('resource_path')) {
     }
 }
 
-if (! function_exists('asset')) {
+if (!function_exists('asset')) {
     /**
      * Get the path to the base of the install with assets.
      *
@@ -95,9 +95,7 @@ if (! function_exists('asset')) {
     function asset($path = '')
     {
         $path = 'assets/' . $path;
-        return MODX_SITE_URL.($path ? DIRECTORY_SEPARATOR.$path : $path);
-
-
+        return MODX_SITE_URL . ltrim(($path ? DIRECTORY_SEPARATOR . $path : $path), '/');
     }
 }
 
