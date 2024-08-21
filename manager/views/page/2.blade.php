@@ -1,7 +1,7 @@
 @extends('manager::template.page')
 @section('content')
     <?php /*include_once evolutionCMS()->get('ManagerTheme')->getFileProcessor("actions/welcome.static.php");*/
-    unset($_SESSION['itemname']); // clear this, because it's only set for logging purposes
+    unset($_SESSION['itemname'], $_SESSION['itemaction']); // clear this, because it's only set for logging purposes
 
     if (evo()->hasPermission('settings') && evo()->getConfig('settings_version') !== evo()->getVersionData('version')) {
         // seems to be a new install - send the user to the configuration page
@@ -166,16 +166,14 @@
             $idle = ($activeUser['lasthit'] + evo()->getConfig('server_offset_time')) < $timetocheck ? ' class="userIdle"' : '';
             $webicon = $activeUser['internalKey'] < 0 ? '<i class="[&icon_globe&]"></i>' : '';
             $ip = $activeUser['ip'] === '::1' ? '127.0.0.1' : $activeUser['ip'];
+            $currentaction = EvolutionCMS\Legacy\LogHandler::getAction($activeUser['action'], $activeUser['id']);
             if ($activeUser['action'] == 112 && $activeUser['id'] == 0) {
                 $managerLog = EvolutionCMS\Models\ManagerLog::where('internalKey', $activeUser['internalKey'])->where('action', $activeUser['action'])->orderByDesc('timestamp')->first();
                 if ($managerLog) {
-                    $activeUser['id'] = $managerLog->itemname;
+                    $currentaction = $managerLog->itemname . ' - ' . str_replace($managerLog->itemname, '', $managerLog->message);
                 }
             }
-            $currentaction = EvolutionCMS\Legacy\LogHandler::getAction($activeUser['action'], $activeUser['id']);
             if (extension_loaded('intl')) {
-                // https://www.php.net/manual/en/class.intldateformatter.php
-                // https://www.php.net/manual/en/datetime.createfromformat.php
                 $formatter = new IntlDateFormatter(evo()->getConfig('manager_language'), IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, null, null, 'HH:mm:ss');
                 $lasthit = $formatter->format(evo()->timestamp($activeUser['lasthit']));
             } else {

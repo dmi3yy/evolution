@@ -9,7 +9,7 @@ return [
     '7'   => 'Waiting while Evolution CMS cleans up', //ok
     '8'   => 'Logged out', //ok
     '9'   => 'Viewing help', //ok
-    '10'  => 'Viewing/ composing messages', //ok
+    '10'  => 'Viewing / composing messages', //ok
     '11'  => 'Creating a user', //ok. == 12
     '12'  => 'Editing user', //ok. == 11
     '13'  => 'Viewing logging', //ok
