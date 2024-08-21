@@ -450,7 +450,7 @@ class ManagerTheme implements ManagerThemeInterface
         }
         /********************************************************************/
 
-        unset($_SESSION['itemname']); // clear this, because it's only set for logging purposes
+        unset($_SESSION['itemname'], $_SESSION['itemaction']); // clear this, because it's only set for logging purposes
 
         return $out;
     }

@@ -37,7 +37,11 @@ class LogHandler
         $text = get_by_key(self::$actions, $actionId, 'Idle (unknown)');
 
         if ($actionId == 112) {
-            $text .= ' ' . $itemid;
+            if (isset($_SESSION['itemaction']) && trim($_SESSION['itemaction'])) {
+                $text = $_SESSION['itemaction'];
+            } else {
+                $text .= ' ' . $itemid;
+            }
         }
 
         return sprintf($text, $itemid);
@@ -61,15 +65,19 @@ class LogHandler
         $itemname = ""
     ) {
         $this->entry['msg'] = $msg; // writes testmessage to the object
-        $this->entry['action'] = empty($action) ? evo()->getManagerApi()->action : $action;    // writes the action to the object
+        $this->entry['action'] = empty($action) ? evo()->getManagerApi()->action : $action; // writes the action to the object
 
         // User Credentials
         $this->entry['internalKey'] = $internalKey == "" ? evo()->getLoginUserID() : $internalKey;
         $this->entry['username'] = $username == "" ? evo()->getLoginUserName() : $username;
 
-        $this->entry['itemId'] = (empty($itemid) && isset($_REQUEST['id'])) ? (int)$_REQUEST['id'] : $itemid;  // writes the id to the object
+        $this->entry['itemId'] = (empty($itemid) && isset($_REQUEST['id'])) ? (int)$_REQUEST['id'] : $itemid; // writes the id to the object
         if ($this->entry['itemId'] == 0) {
-            $this->entry['itemId'] = "-";
+            if (isset($_REQUEST['i']) && (int)$_REQUEST['i'] > 0) {
+                $this->entry['itemId'] = (int)$_REQUEST['i'];
+            } else {
+                $this->entry['itemId'] = "-";
+            }
         } // to stop items having id 0
 
         $this->entry['itemName'] = ($itemname == "" && isset($_SESSION['itemname'])) ? $_SESSION['itemname'] : $itemname; // writes the id to the object
