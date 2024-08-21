@@ -40,7 +40,7 @@ class LogHandler
             if (isset($_SESSION['itemaction']) && trim($_SESSION['itemaction'])) {
                 $text = $_SESSION['itemaction'];
             } else {
-                $text .= ' ' . $itemid;
+                $text .= ($itemid != 0 ? ' ' . $itemid : '');
             }
         }
 
