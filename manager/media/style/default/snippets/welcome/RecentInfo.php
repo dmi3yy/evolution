@@ -1,13 +1,13 @@
 <?php
-$enable_filter = EvolutionCMS()->getConfig('enable_filter');
-EvolutionCMS()->setConfig('enable_filter', true);
+$enable_filter = evo()->getConfig('enable_filter');
+evo()->setConfig('enable_filter', true);
 $_style = ManagerTheme::getStyle();
-
 $contents = \EvolutionCMS\Models\SiteContent::query()->orderBy('editedon','DESC')->limit(10);
 
 if ($contents->count() < 1) {
     return '<tr><td>[%no_activity_message%]</td></tr>';
 }
+
 $tpl = '<tr>
     <td data-toggle="collapse" data-target=".collapse[+id+]" class="text-nowrap text-right"><span class="label label-info">[+id+]</span></td>
     <td data-toggle="collapse" data-target=".collapse[+id+]"><a class="[+status+]" title="[%edit_resource%]" href="index.php?a=3&amp;id=[+id+]" target="main">[+pagetitle:htmlentities+]</a></td>
@@ -38,9 +38,10 @@ $btntpl['preview_btn'] = '<a [+preview_disabled+]" title="[%preview_resource%]" 
 $output = array();
 foreach ($contents->get()->toArray() as $ph) {
     $docid = $ph['id'];
-    $_ = EvolutionCMS()->getUserInfo($ph['editedby']);
-    if(isset($_['username']))
+    $_ = evo()->getUserInfo($ph['editedby']);
+    if (isset($_['username'])) {
         $ph['username'] = $_['username'];
+    }
 
     if ($ph['deleted'] == 1) {
         $ph['status'] = 'deleted text-danger';
@@ -50,7 +51,7 @@ foreach ($contents->get()->toArray() as $ph) {
         $ph['status'] = 'published';
     }
 
-    if (EvolutionCMS()->hasPermission('edit_document')) {
+    if (evo()->hasPermission('edit_document')) {
         $ph['edit_btn'] = str_replace('[+id+]', $docid, $btntpl['edit']);
     } else {
         $ph['edit_btn'] = '';
@@ -65,7 +66,7 @@ foreach ($contents->get()->toArray() as $ph) {
         $preview_disabled
     ), $btntpl['preview_btn']);
 
-    if (EvolutionCMS()->hasPermission('delete_document')) {
+    if (evo()->hasPermission('delete_document')) {
         if ($ph['deleted'] == 0) {
             $delete_btn = '<a onclick="return confirm(\'[%confirm_delete_record%]\')" title="[%delete_resource%]" href="index.php?a=6&amp;id=[+id+]" target="main"><i class="'. $_style['icon_trash'] . $_style['icon_size_fix'] . '"></i></a> ';
         } else {
@@ -87,20 +88,18 @@ foreach ($contents->get()->toArray() as $ph) {
     }
 
     $ph['publish_btn'] = str_replace('[+id+]', $docid, $publish_btn);
-
     $ph['info_btn'] = str_replace('[+id+]', $docid, '<a title="[%resource_overview%]" data-toggle="collapse" data-target=".collapse[+id+]"><i class="'. $_style['icon_info'] . $_style['icon_size_fix'] . '"></i></a>');
-
     $ph['longtitle'] = $ph['longtitle'] == '' ? '(<i>[%not_set%]</i>)' : entities($ph['longtitle']);
     $ph['description'] = $ph['description'] == '' ? '(<i>[%not_set%]</i>)' : entities($ph['description']);
     $ph['introtext'] = $ph['introtext'] == '' ? '(<i>[%not_set%]</i>)' : entities($ph['introtext']);
     $ph['alias'] = $ph['alias'] == '' ? '(<i>[%not_set%]</i>)' : entities($ph['alias']);
-    $ph['edit_date'] = EvolutionCMS()->toDateFormat(EvolutionCMS()->timestamp($ph['editedon']));
+    $ph['edit_date'] = evo()->toDateFormat(evo()->timestamp($ph['editedon']));
     $ph['doctype'] = $ph['type'] == 'reference' ? '[%weblink%]' : '[%resource%]';
     $ph['hidemenu'] = $ph['hidemenu'] == 1 ? '[%no%]' : '[%yes%]';
     $ph['cacheable'] = $ph['cacheable'] == 1 ? '[%yes%]' : '[%no%]';
 
-    $output[] = EvolutionCMS()->parseText($tpl, $ph);
+    $output[] = evo()->parseText($tpl, $ph);
 }
 
-EvolutionCMS()->setConfig('enable_filter', $enable_filter);
+evo()->setConfig('enable_filter', $enable_filter);
 return implode("\n", $output);

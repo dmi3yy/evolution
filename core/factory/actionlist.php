@@ -95,7 +95,7 @@ return [
     '96'  => 'Duplicate Template', //ok
     '97'  => 'Duplicate Chunk (HTML Snippet)',//ok
     '98'  => 'Duplicate Snippet', //ok
-    '99'  => 'Manage Web Users', //ok
+    '99'  => 'Manage Users', //ok
     '100' => 'Previewing resource', //ok change the plugin priority
     '101' => 'Create new plugin', //ok 101, 102
     '102' => 'Edit plugin', //ok 101, 102
