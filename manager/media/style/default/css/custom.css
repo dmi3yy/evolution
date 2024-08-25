@@ -36,15 +36,17 @@ select[name=context] + input[type=submit] { float: none; margin: 0; }
 #settingsPane select[size="1"] { width: 50%; }
 #range::after { content: ""; display: table; width: 100% }
 /* [ Editor ] */
-.navbar.navbar-editor {padding: .5rem 1.25rem; border-radius: 0}
-.navbar-editor > label {margin-bottom: 0}
-.section-editor textarea {float: left; border-left: none; border-right: none; font-family: 'Inconsolata', 'Monaco', 'Consolas', 'Courier New', 'Courier', monospace; font-weight: 300; font-size: 0.875rem;}
+.navbar.navbar-editor {
+    padding: .5rem 1.25rem; border-radius: 0 }
+.navbar-editor > label { margin-bottom: 0 }
+.section-editor textarea { float: left; border-left: none; border-right: none; font-family: 'Inconsolata', 'Monaco', 'Consolas', 'Courier New', 'Courier', monospace; font-weight: 300; font-size: 0.875rem; }
 /* [ Action Buttons ] */
 /* new style */
 #actions { background: rgba(199, 199, 199, 0.25); padding: 0.5rem; position: fixed; top: 0; right: 1rem; text-align: right; z-index: 1001; border-radius: 0 0 0.3rem 0.3rem; }
 #actions .btn-group { margin: 0 }
 #actions .btn-group > .btn-group { display: block }
-#actions .btn-group .btn, #actions .btn-group .form-control {font-size: .6772rem; height: 2.4em; line-height: 1.4}
+#actions .btn-group .btn, #actions .btn-group .form-control {
+    font-size: .6772rem; height: 2.4em; line-height: 1.4 }
 #actions .btn-group .btn .fa, #_actions .btn-group .btn .fa { display: none; width: 1em; font-size: 1em; text-align: center }
 #actions .btn-group .btn-group #Button1 { min-width: 100%; text-align: left; float: right; }
 #actions .btn-group .btn-success { box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .07); }
@@ -53,7 +55,8 @@ select[name=context] + input[type=submit] { float: none; margin: 0; }
 #actions .btn-group .plus::before { content: "\f107"; font-weight: 900; font-family: 'Font Awesome 5 Free' }
 #actions .btn-group .show .plus::before { content: "\f106"; }
 #actions .btn-group select#stay { display: block; position: relative; z-index: -1; clear: both; width: auto; height: 0; margin: -100% 0 -2rem 0; font-size: 0.675rem; opacity: 0; visibility: hidden; }
-#actions .btn-group .dropdown-menu { display: none; position: absolute; z-index: -1; left: auto; right: 0; top: 100%; width: 100%; min-width: 2rem; margin: 0; padding: 0; text-align: left; font-size: .6772rem; border-top: none; border-radius: 0 0 0.1em 0.1em; overflow: hidden; }
+#actions .btn-group .dropdown-menu { display: none; position: absolute; z-index: -1; left: auto; right: 0; top: 100%; width: 100%; min-width: 2rem; margin: 0; padding: 0; text-align: left; font-size: .6772rem;
+    border-top: none; border-radius: 0 0 0.1em 0.1em; overflow: hidden; }
 #actions .btn-group .show > .dropdown-menu { display: block }
 #actions .btn-group .dropdown-menu > span { display: block; margin: 0; text-align: left; border: none; border-top: 1px solid rgba(0, 0, 0, 0.1) }
 #actions .btn-group .dropdown-menu > span:first-child { border-color: transparent }
@@ -109,7 +112,8 @@ select[name=context] + input[type=submit] { float: none; margin: 0; }
 .actionButtons a:hover { border-color: #999; -webkit-box-shadow: 1px 1px 2px #aaa; box-shadow: 1px 1px 2px #aaa; -webkit-transition: .3s ease; transition: .3s ease; background: -moz-linear-gradient(#fff, #f5f5f5); background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#f5f5f5)); background: -o-linear-gradient(#fff, #f5f5f5); text-decoration: none !important; }
 .actionButtons a:active { background: #92aac4 bottom left; -webkit-box-shadow: 0 0 10px #b8c7d6; box-shadow: 0 0 10px #b8c7d6; }
 .actionButtons a { float: left; padding: 5px 10px; height: 32px; font-size: 13px; font-weight: 500; }
-.actionButtons a, .actionButtons li.primary a, .actionButtons a.primary, .actionButtons a.default { text-shadow: none; background: #fff; color: #555; border: 1px solid #e4e4e4; border-radius: 3px; /*box-shadow: 0 0 0 1px #E4E4E4;*/ box-shadow: none; transition: none;}
+.actionButtons a, .actionButtons li.primary a, .actionButtons a.primary, .actionButtons a.default { text-shadow: none; background: #fff; color: #555; border: 1px solid #e4e4e4; border-radius: 3px; /*box-shadow: 0 0 0 1px #E4E4E4;*/
+    box-shadow: none; transition: none; }
 .actionButtons a:hover { background: #1377c5; box-shadow: none; border-color: #1377c5; color: #fff !important; transition: none; }
 .actionButtons a:active { background-color: #3189ba; border-color: #3189ba; }
 .actionButtons li.primary a, .actionButtons a.primary { color: #fff; border-color: #32ab9a; background: #32ab9a linear-gradient(#32ab9a, #00948e); }
@@ -183,17 +187,22 @@ table.actionButtons .searchtext { padding: 5px; height: 24px; width: 150px; }
 .table.data .doc-item:hover span { text-decoration: underline }
 .table.data .doc-item.private .fa::after { position: relative; float: left; margin: .5em -1em 0 0; content: "\f023"; font-size: 0.75em; color: #d9534f; }
 /* [ BREADCRUMBS ] */
-ul.breadcrumbs {margin: 0 1rem .5rem; padding: 0 0 .5rem; line-height: normal; font-size: .675rem; color: #888; border-bottom: 1px dotted #cecaca;}
+ul.breadcrumbs {
+    margin: 0 1rem .5rem;
+    padding: 0 0 .5rem; line-height: normal; font-size: .675rem;
+    color: #888; border-bottom: 1px dotted #cecaca; }
 ul.breadcrumbs li { list-style: none; display: inline-block; padding: 0; margin: 0; }
 ul.breadcrumbs a { text-decoration: none; }
 ul.breadcrumbs span { display: inline-block; width: 1.25em; vertical-align: top; text-indent: -2.25em; overflow: hidden; }
 ul.breadcrumbs span::after { margin-left: 2em; font-family: 'Font Awesome 5 Free'; content: "\f105"; font-weight: 600; }
 /* [ PAGINATION ] */
-#pagination {padding: 0 1.25rem; margin: .5rem 0 0;}
-#pagination ul {margin: 0 0 0 .5rem; display: inline-block;
-#pagination li {list-style: none; display: inline-block; margin: 0 0 0 1px;}
-#pagination li a {display: inline-block; padding: 0 .5rem; line-height: 1.7; border: 1px solid #ddd; text-decoration: none; color: #333;}
-#pagination li.currentPage a, #pagination li a:hover {color: #555; border: 1px solid #555;}
+#pagination { padding: 0 1.25rem; margin: .5rem 0 0; }
+#pagination ul {
+    margin: 0 0 0 .5rem; display: inline-block; }
+#pagination li { list-style: none; display: inline-block; margin: 0 0 0 1px; }
+#pagination li a { display: inline-block; padding: 0 .5rem;
+    line-height: 1.7; border: 1px solid #ddd; text-decoration: none; color: #333; }
+#pagination li.currentPage a, #pagination li a:hover { color: #555; border: 1px solid #555; }
 /* [ SEARCHBAR ] */
 .searchbar input[type=text] { max-width: 10rem }
 /* [ WIDGETS ] */
@@ -213,9 +222,12 @@ ul.breadcrumbs span::after { margin-left: 2em; font-family: 'Font Awesome 5 Free
 /* widgets custom */
 .widgets #welcome .wm_buttons { display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-bottom: 1rem; padding: 0; text-align: center; border-bottom: 1px solid rgba(0, 0, 0, .05); }
 .widgets #welcome .wm_button { max-width: 50%; flex: 0 0 50%; }
-.widgets #welcome .wm_button a { display: block; height: 100%; padding: 1rem 1rem .5rem; text-decoration: none; color: #646b7b; box-shadow: none; transition-duration: .5s }
+.widgets #welcome .wm_button a { display: block; height: 100%; padding: 1rem 1rem .5rem;
+    text-decoration: none; color: #646b7b; box-shadow: none; transition-duration: .5s }
 .widgets #welcome .wm_button a:hover { color: #373b46; background-color: rgba(93, 109, 202, 0.16) }
+
 .widgets #welcome .wm_button a .fa { display: inline-block; }
+
 .widgets #welcome .wm_button a .fa + span { display: block; padding: .5em 0; line-height: 1em; font-size: .7rem; word-wrap:normal; }
 
 .widgets #recent_widget .table.data tbody tr:not(:hover) { background-color: #fff }
@@ -231,7 +243,7 @@ ul.breadcrumbs span::after { margin-left: 2em; font-family: 'Font Awesome 5 Free
     .widgets #welcome .wm_button { max-width: 25%; flex: 0 0 25%; }
 }
 @media (min-width: 1400px) {
-    .widgets #welcome .wm_button {max-width: 12.5%; flex: 0 0 12.5%;}
+    .widgets #welcome .wm_button { max-width: 12.5%; flex: 0 0 12.5%; }
 }
 /* [ DATEPICKER ] */
 .dp_container { position: absolute; z-index: 500; }
@@ -265,7 +277,8 @@ ul.breadcrumbs span::after { margin-left: 2em; font-family: 'Font Awesome 5 Free
 .grid img { vertical-align: middle; padding-right: 4px; }
 /* SORTABLELIST */
 ul.sortableList { margin: 0; }
-ul.sortableList li {position: relative; z-index: 1; float: left; clear: both; max-width: 100%; width: 30rem; list-style: none; font-weight: bold; cursor: move; padding: 0.46153846em 1em; margin: .0625rem 0; border: 1px solid #ccc; line-height: 1.23076923; background-color: #fff; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); box-shadow: none; transition: color .3s, box-shadow .3s, transform .3s, z-index .3s step-end;}
+ul.sortableList li { position: relative; z-index: 1; float: left; clear: both; max-width: 100%; width: 30rem; list-style: none; font-weight: bold; cursor: move; padding: 0.46153846em 1em; margin: .0625rem 0;
+    border: 1px solid #ccc; line-height: 1.23076923; background-color: #fff; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); box-shadow: none; transition: color .3s, box-shadow .3s, transform .3s, z-index .3s step-end; }
 ul.sortableList li.ghost { z-index: 2; box-shadow: 0 0.25rem 1.5rem rgba(0, 0, 0, 0.15); transition: color .3s, box-shadow .3s, transform 0s, z-index 0s; }
 /* [ TOOLTIPS ] */
 .evo-tooltip, .custom-tip { position: fixed; z-index: 13000; width: 13rem; margin: 1rem; padding: 0.9rem 1rem; font-size: 0.75rem; line-height: 1.5; font-family: sans-serif; text-align: left; color: #333; background-color: #fff; visibility: hidden; transition-duration: .3s; transform: translate3d(1rem, 0, 0); -webkit-box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15); box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15); }
@@ -286,7 +299,9 @@ ul.sortableList li.ghost { z-index: 2; box-shadow: 0 0.25rem 1.5rem rgba(0, 0, 0
 #file_editfile td { padding: 0 !important; }
 #file_editfile #content { float: left; width: 100%; min-height: 25rem; border: none; border-bottom: 1px solid rgba(0, 0, 0, .15) }
 /* STYLES FOR PAGE HELP */
-#helpPane h1 {margin-bottom: 1em; padding: .5rem; font-size: .8rem; border-bottom: 1px solid #e0e0e0;}
+#helpPane h1 { margin-bottom: 1em; padding: .5rem;
+    font-size: .8rem;
+    border-bottom: 1px solid #e0e0e0; }
 #helpPane li:not(:first-child) > strong { margin-top: 1.4em; }
 #helpPane li > strong { display: block; font-size: 14px; }
 #helpPane pre { border: 1px solid rgba(0, 0, 0, 0.1); padding: 1em; }
@@ -470,8 +485,8 @@ form#docfinder div.tab-page { height: auto !important }
     to { opacity: 1; transform: translateY(0); }
 }
 @-webkit-keyframes anim-loginbox {
-    from {opacity: 0; transform: translateY(30px);}
-    to {opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 .loginbox { -webkit-animation-name: anim-loginbox; -webkit-animation-duration: .5s; -webkit-animation-iteration-count: 1; -webkit-animation-timing-function: ease; -webkit-animation-fill-mode: forwards; -moz-animation-name: anim-loginbox; -moz-animation-duration: .5s; -moz-animation-iteration-count: 1; -moz-animation-timing-function: ease; -moz-animation-fill-mode: forwards; animation-name: anim-loginbox; animation-duration: .5s; animation-iteration-count: 1; animation-timing-function: ease; animation-fill-mode: forwards; }
 /* end loginbox animation */
@@ -488,4 +503,4 @@ ul.breadcrumbs a { color: #333; }
 #news .card-block ul, #security .card-block ul { padding: 0; margin: 0; }
 #news .card-block ul li, #security .card-block ul li { padding: 0.75rem 1rem; border-bottom: 1px solid #ebebeb; }
 ul.mmTagList li { padding: 2px 8px !important; margin-bottom: 5px !important; border-radius: 3px !important; -webkit-border-radius: 3px !important; background-color: #eaeaea !important; text-decoration: none !important; }
-ul.mmTagList li.tagSelected {border-radius: 3px !important; -webkit-border-radius: 3px !important; background-color: #5a5e63 !important;}
+ul.mmTagList li.tagSelected { border-radius: 3px !important; -webkit-border-radius: 3px !important; background-color: #5a5e63 !important; }
