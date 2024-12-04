@@ -1,19 +1,19 @@
 <?php
-if( ! defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
+if(!defined('IN_MANAGER_MODE') || IN_MANAGER_MODE !== true) {
     die("<b>INCLUDE_ORDERING_ERROR</b><br /><br />Please use the EVO Content Manager instead of accessing this file directly.");
 }
 $modx = EvolutionCMS();
-if (!$modx->hasPermission('save_document')) {
-    $modx->webAlertAndQuit($_lang["error_no_privileges"]);
+if (!evo()->hasPermission('save_document')) {
+    evo()->webAlertAndQuit(__("global.error_no_privileges"));
 }
 
 // preprocess POST values
 $id = is_numeric($_POST['id']) ? $_POST['id'] : '';
 
-$introtext = $_POST['introtext'];
-$content = $_POST['ta'];
-$pagetitle = $_POST['pagetitle'];
-$description = $_POST['description'];
+$introtext = $_POST['introtext'] ?? '';
+$content = $_POST['ta'] ?? '';
+$pagetitle = $_POST['pagetitle'] ?? '';
+$description = $_POST['description'] ?? '';
 $alias = $_POST['alias'];
 $link_attributes = $_POST['link_attributes'];
 $isfolder = (int)$_POST['isfolder'];
