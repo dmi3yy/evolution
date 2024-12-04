@@ -488,8 +488,9 @@ function BrowseFileServer(ctrl) {
 
 function SetUrlChange(el) {
     if ('createEvent' in document) {
-        var evt = document.createEvent('HTMLEvents');
-        evt.initEvent('change', false, true);
+        //var evt = document.createEvent('HTMLEvents');
+        //evt.initEvent('change', false, true);
+        let evt = new Event("change", {"bubbles":false, "cancelable":true});
         el.dispatchEvent(evt);
     } else {
         el.fireEvent('onchange');

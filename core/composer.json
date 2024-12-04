@@ -26,7 +26,7 @@
     }
   ],
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.2",
     "composer/composer": "*",
     "dmitry-suffi/redis-session-handler": "*",
     "doctrine/dbal": "3.*",
