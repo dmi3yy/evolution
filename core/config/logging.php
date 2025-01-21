@@ -46,6 +46,7 @@ return [
 
         'daily' => [
             'driver' => 'daily',
+            'name' => env('APP_NAME', 'evo'),
             'path' => EVO_STORAGE_PATH . 'logs/laravel.log',
             'level' => 'debug',
             'days' => 7,
